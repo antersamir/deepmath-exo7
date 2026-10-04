@@ -1,0 +1,88 @@
+\documentclass[11pt,class=report,crop=false]{standalone}
+\usepackage[screen]{../python}
+
+
+\begin{document}
+
+
+%====================================================================
+\chapitre{Limites}
+%====================================================================
+
+
+\objectifs{La définition de la limite d'une fonction en un point à l'aide de $\epsilon$ et $\alpha$ est la base de toute l'analyse. Dans ce chapitre, on rappelle cette définition, on dégage une méthode pour l'utiliser en pratique, puis on l'applique sur des exercices corrigés.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Définition de la limite}
+
+\index{limite}
+
+%--------------------------------------------------------------------
+\subsection{Définition}
+
+Soit $f$ une fonction d'ensemble de définition $D_f$, soit $x_0$ un réel et $\ell$ un réel.
+
+\begin{definition}
+On dit que $f$ admet pour \defi{limite} $\ell$ en $x_0$, et on note $\displaystyle\lim_{x\to x_0} f(x)=\ell$, si :
+\mybox{$(\forall \epsilon>0)\ (\exists \alpha>0)\ (\forall x\in D_f)\quad \big(0<|x-x_0|<\alpha \implies |f(x)-\ell|<\epsilon\big)$.}
+\end{definition}
+
+Autrement dit, on peut rendre $f(x)$ aussi proche que l'on veut de $\ell$ (à $\epsilon$ près), à condition de prendre $x$ suffisamment proche de $x_0$ (à $\alpha$ près).
+
+\begin{remarque*}
+Le réel $\alpha$ dépend de $\epsilon$ : plus on exige que $f(x)$ soit proche de $\ell$ (c'est-à-dire plus $\epsilon$ est petit), plus il faut en général prendre $x$ proche de $x_0$ (c'est-à-dire $\alpha$ petit).
+\end{remarque*}
+
+
+%--------------------------------------------------------------------
+\subsection{Méthode}
+
+Pour montrer $\displaystyle\lim_{x\to x_0} f(x)=\ell$ à l'aide de la définition $(\epsilon,\alpha)$ :
+\begin{enumerate}
+  \item \textbf{Majoration locale.} On se place sur un voisinage de $x_0$, par exemple $|x-x_0|<r$, et on majore $|f(x)-\ell|$ par une expression du type
+  $$|f(x)-\ell| \le M\,|x-x_0|.$$
+  Le fait de rester proche de $x_0$ permet de contrôler les facteurs parasites (comme $|2x+5|$ dans l'exercice ci-dessous).
+
+  \item \textbf{Choix de $\alpha$.} Pour avoir $|f(x)-\ell|<\epsilon$, il suffit que $M|x-x_0|<\epsilon$ et que $x$ reste dans le voisinage. On prend donc
+  \mybox{$\alpha = \min\left(\dfrac{\epsilon}{M},\ r\right)$.}
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercices corrigés}
+
+%--------------------------------------------------------------------
+\subsection{Limite d'un polynôme du second degré}
+
+\begin{exercicecours}
+Soit la fonction $f : x \mapsto 2x^2+3x+1$.
+Montrer en utilisant la définition que :
+$$\lim_{x\to 1} f(x) = 6.$$
+\end{exercicecours}
+
+\begin{solution}
+Montrons que :
+$$(\forall \epsilon>0)\ (\exists \alpha>0)\ (\forall x\in D_f)\quad \big(0<|x-1|<\alpha \implies |f(x)-6|<\epsilon\big).$$
+
+\textbf{1) Majoration locale de $|f(x)-6|$.}
+
+Pour $x\in I=\left]\frac12,\frac32\right[$, on a $|x-1|<\frac12$. On factorise :
+$$|f(x)-6| = |2x^2+3x-5| = |x-1|\,|2x+5|.$$
+Pour $x\in I$ : $\frac12<x<\frac32$, donc $6<2x+5<8$, d'où $|2x+5|<8$ et :
+$$|f(x)-6| \le 8\,|x-1|.$$
+
+\textbf{2) Choix de $\alpha$.}
+
+Pour avoir $|f(x)-6|<\epsilon$, il suffit d'avoir $8|x-1|<\epsilon$ et $|x-1|<\frac12$, c'est-à-dire :
+$$|x-1|<\frac{\epsilon}{8} \qquad\text{et}\qquad |x-1|<\frac12.$$
+Il suffit donc de prendre
+$$\alpha=\min\left(\frac{\epsilon}{8},\ \frac12\right).$$
+
+\textbf{Conclusion.} $\displaystyle\lim_{x\to 1} f(x) = 6$.
+\end{solution}
+
+
+\end{document}
